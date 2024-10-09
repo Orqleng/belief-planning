@@ -5,7 +5,7 @@ from PredictiveControllers import MPC, MPCParams
 from MPC_branch import BranchMPC, BranchMPCParams
 
 def initMPCParams(nx, d, N, M, m, ydes,vdes,am,rm,N_lane,W):
-    # Buil the matrices for the state constraint in each region. In the region i we want Fx[i]x <= bx[b]
+    # Build the matrices for the state constraint in each region. In the region i we want Fx[i]x <= bx[b]
     Fx = np.array([[0., 1., 0., 0.],
                    [0., -1., 0., 0.],
                    [0., 0., 0., 1.],
@@ -71,7 +71,7 @@ def initquadBranchMPC(n,d,N,NB,xRef,vxm,vym,rm):
                    [rm]]) # Max Steering
 
     # Tuning Parameters
-    Q = np.diag([1., 1., 1]) # vx, vy, wz, epsi, s, ey
+    Q = np.diag([1., 1., 1])                     # vx, vy, wz, epsi, s, ey
     R = np.diag([1., 100., 1.])                  # delta, a
     dR = np.array([0.9,5,1])
     Qslack = 1 * np.array([0, 300])

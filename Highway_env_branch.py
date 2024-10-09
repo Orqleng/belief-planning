@@ -122,7 +122,19 @@ class Highway_env():
                 hi = np.zeros(self.m)
                 for j in range(0,self.m):
                     hi[j] = min(np.append(veh_col(x1,xx_set[i][:,j*n:(j+1)*n],[self.cons.L+1,self.cons.W+0.2]),lane_bdry_h(x1,self.LB[0],self.LB[1])))
-                self.veh_set[i].backupidx = np.argmax(hi)
+                
+                # self.veh_set[i].backupidx = np.argmax(hi)
+                # # Instead of always taking the index with the maximum score, we do a weighted random choice.
+                # probabilities = hi / np.sum(hi)  # Normalize the scores to get a probability distribution
+                # self.veh_set[i].backupidx = np.random.choice(range(len(hi)), p=probabilities)
+                # # Randomly pick one policy
+                # self.veh_set[i].backupidx = np.random.randint(self.m)
+                # Get the sorted indices of the list 'hi'
+                sorted_indices = np.argsort(hi)
+                # Select the middle policy
+                middle_index = sorted_indices[1]
+                self.veh_set[i].backupidx = 1 #np.argmax(hi)#middle_index
+                print(self.veh_set[i].backupidx, np.argmax(hi))
 
             u0_set[i]=self.backupcons[self.veh_set[i].backupidx](self.veh_set[i].state)
 

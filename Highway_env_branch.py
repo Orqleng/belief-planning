@@ -133,7 +133,7 @@ class Highway_env():
                 sorted_indices = np.argsort(hi)
                 # Select the middle policy
                 middle_index = sorted_indices[1]
-                self.veh_set[i].backupidx = 1 #np.argmax(hi)#middle_index
+                self.veh_set[i].backupidx = np.argmax(hi)#middle_index
                 print(self.veh_set[i].backupidx, np.argmax(hi))
 
             u0_set[i]=self.backupcons[self.veh_set[i].backupidx](self.veh_set[i].state)
@@ -153,6 +153,7 @@ class Highway_env():
         # Ydes = 1.8+self.veh_set[0].laneidx*3.6
         # vdes = self.veh_set[1].state[2]+5
         xRef = np.array([0,Ydes,vdes,0])
+        print(xRef)
         self.mpc.solve(self.veh_set[0].state,self.veh_set[1].state,xRef)
 
         u_set[0] = self.mpc.uPred[0]

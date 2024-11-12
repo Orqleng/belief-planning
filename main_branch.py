@@ -41,7 +41,7 @@ def sim_merge():
     lane_width = 3.6
 
     N = 40
-    n = 4;   d = 2                            # State and Input dimension
+    n = 4;   d = 2                       # State and Input dimension
     x0 = np.array([0, 1.8, 0, 0])        # Initial condition
     xRef = np.array([0.5,1.8,15,0])
     am = 7.0
@@ -72,5 +72,5 @@ def sim_merge():
 
 
 if __name__== "__main__":
-  sim_overtake()
-  # sim_merge()
+  #sim_overtake()
+   sim_merge()
